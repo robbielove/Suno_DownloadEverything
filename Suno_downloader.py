@@ -105,7 +105,6 @@ def fetch_page_with_retry(page_num, base_api_url, headers, proxies_list, max_ret
             else:
                 print(f"{Fore.RED}Failed to fetch page {page_num} after {max_retries} attempts: {e}")
                 raise
-    return [], False
 
 def determine_total_pages(base_api_url, headers, proxies_list):
     """Determine the total number of pages by finding the first empty page"""
@@ -185,8 +184,7 @@ def extract_private_song_info(token_string, proxies_list=None):
                     "title": title, 
                     "audio_url": audio_url, 
                     "image_url": image_url, 
-                    "display_name": clip.get("display_name"),
-                    "uuid": uuid
+                    "display_name": clip.get("display_name")
                 }
     
     print(f"{Fore.GREEN}Total unique songs extracted: {len(song_info)}")
@@ -221,7 +219,6 @@ def download_file(url, filename, proxies_list=None, token=None, timeout=30, max_
                 time.sleep(2)
             else:
                 raise
-    return unique_filename
 
 def main():
     parser = argparse.ArgumentParser(description="Bulk download your private suno songs")
